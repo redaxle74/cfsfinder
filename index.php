@@ -1,19 +1,18 @@
 <?php
+$AUTH_USER = 'nonok';
+$AUTH_PASS = 'xvTvTdkkJ7wvV3Ls.qEk';
 
-// First check if a username was provided.
-if (!isset($_SERVER['PHP_AUTH_USER'])) {
-    // If no username provided, present the auth challenge.
-    header('WWW-Authenticate: Basic realm="CFS Finder"');
-    header('HTTP/1.0 401 Unauthorized');
-    // User will be presented with the username/password prompt
-    // If they hit cancel, they will see this access denied message.
-    echo '<p>Access denied. You did not enter a password.</p>';
-    exit; // Be safe and ensure no other content is returned.
+header('Cache-Control: no-cache, must-revalidate, max-age=0');
+$has_supplied_credentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
+$is_not_authenticated = (
+    !$has_supplied_credentials ||
+    $_SERVER['PHP_AUTH_USER'] != $AUTH_USER ||
+    $_SERVER['PHP_AUTH_PW']   != $AUTH_PASS
+);
+if ($is_not_authenticated) {
+    header('HTTP/1.1 401 Authorization Required');
+    header('WWW-Authenticate: Basic realm="Access denied"');
+    exit;
 }
 
-// If we get here, username was provided. Check password.
-if ($_SERVER['PHP_AUTH_USER'] == 'nonok' && $_SERVER['PHP_AUTH_PW'] == 'xvTvTdkkJ7wvV3Ls.qEk') {
-    include_once("index.html");
-} else {
-    echo '<p>Access denied! You do not know the password.</p>';
-}
+include_once("index.html");
