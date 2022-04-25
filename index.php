@@ -1,5 +1,5 @@
 <?php
-$AUTH_USER = 'nonok';
+$AUTH_USER = 'CFS_finder';
 $AUTH_PASS = 'xvTvTdkkJ7wvV3Ls.qEk';
 
 header('Cache-Control: no-cache, must-revalidate, max-age=0');
