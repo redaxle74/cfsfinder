@@ -3,7 +3,7 @@
 // First check if a username was provided.
 if (!isset($_SERVER['PHP_AUTH_USER'])) {
     // If no username provided, present the auth challenge.
-    header('WWW-Authenticate: Basic realm="My Website"');
+    header('WWW-Authenticate: Basic realm="CFS Finder"');
     header('HTTP/1.0 401 Unauthorized');
     // User will be presented with the username/password prompt
     // If they hit cancel, they will see this access denied message.
@@ -12,8 +12,14 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 }
 
 // If we get here, username was provided. Check password.
-if ($_SERVER['PHP_AUTH_PW'] == 'xvTvTdkkJ7wvV3Ls.qEk') {
-    include_once("index.html");
+if ($_SERVER['PHP_AUTH_USER'] == 'nonok') {
+    // If we get here, username was provided. Check password.
+    if ($_SERVER['PHP_AUTH_PW'] == 'xvTvTdkkJ7wvV3Ls.qEk') {
+        include_once("index.html");
+    } else {
+        echo '<p>Access denied! Invalid password.</p>';
+    }
 } else {
-    echo '<p>Access denied! You do not know the password.</p>';
+    echo '<p>Access denied! Invalid user.</p>';
 }
+
