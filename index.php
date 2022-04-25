@@ -12,14 +12,8 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 }
 
 // If we get here, username was provided. Check password.
-if ($_SERVER['PHP_AUTH_USER'] == 'nonok') {
-    // If we get here, username was provided. Check password.
-    if ($_SERVER['PHP_AUTH_PW'] == 'xvTvTdkkJ7wvV3Ls.qEk') {
-        include_once("index.html");
-    } else {
-        echo '<p>Access denied! Invalid password.</p>';
-    }
+if ($_SERVER['PHP_AUTH_USER'] == 'nonok' && $_SERVER['PHP_AUTH_PW'] == 'xvTvTdkkJ7wvV3Ls.qEk') {
+    include_once("index.html");
 } else {
-    echo '<p>Access denied! Invalid user.</p>';
+    echo '<p>Access denied! You do not know the password.</p>';
 }
-
