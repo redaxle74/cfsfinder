@@ -1,4 +1,4 @@
-prepMain// declare search parameter variables
+// declare search parameter variables
 var _astmType = '';
 var _trussType = '';
 var _roofLength = 0;
